@@ -81,7 +81,7 @@ def html_entity_encode(encvalue):
     return encoded_value
 
 
-def hex_encode(encvalue: int):
+def hex_encode(encvalue: str):
     """Encode value to Hex. Example Format: 48656c6c6f2576f726c64"""
     hexval = ""
     for item in encvalue:

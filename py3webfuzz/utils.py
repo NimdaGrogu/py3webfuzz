@@ -28,6 +28,8 @@ import http.server
 
 import logging
 import ssl
+import sys
+
 import urllib3
 import requests
 from impacket import smbserver
@@ -98,6 +100,7 @@ def make_request(url: str, method: str, **kwargs):
         }.get(method, lambda: None)
         # keyword arguments are packed as a dict and passed to the function for further processing
         response = req(**params)
+
         #  An HTTPError will be raised for certain status codes. If the status code indicates a successful request,
         #  the program will proceed without that exception being raised.
         response.raise_for_status()
@@ -105,13 +108,13 @@ def make_request(url: str, method: str, **kwargs):
     except HTTPError as http_err:
         print(f"HTTP error occurred: {http_err}")
         print(f"{response.text}")
-        exit(1)
+        sys.exit(-1)
     except Exception as err:
         print(f"Exception occurred: {err}")
-        exit(1)
+        sys.exit(-1)
     except SSLError as sslerr:
         print(f"SSLError error occurred: {sslerr}")
-        exit(1)
+        sys.exit(-1)
 
     # Return a response requests
     return response
@@ -187,7 +190,7 @@ def https_server(*args):
         httpd.socket,
         server_side=True,
         certfile="server.pem",
-        ssl_version=ssl.PROTOCOL_TLSv1,
+        ssl_version=ssl.PROTOCOL_TLS_SERVER,
     )
     httpd.serve_forever()
 

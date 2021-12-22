@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 # Libraries Required
 import os
 import logging
+import sys
 
 
 class Attack:
@@ -37,7 +38,8 @@ class Attack:
 
     @staticmethod
     def file_read(location):
-        """ Read the file contents and return the results values, Used in the construction of the values for the payload lists """
+        """ Read a file contents and return the results values, Used in the construction of payloads list
+         :return a list """
         logging.basicConfig(level=logging.DEBUG)
         logger = logging.getLogger(__name__)
         path = Attack.MODPATH + location
@@ -52,13 +54,12 @@ class Attack:
                     if item.startswith("# ") or item.startswith("\n"):
                         pass
                     else:
-                        val.append(item.rstrip())
+                        val.append(item.rstrip())  ## Return a copy of the string with trailing whitespace removed
                 return val
         except Exception as e:
             print(f"[x] Exception Occurred {e}")
             logger.exception(e)
-            exit(1)
-
+            sys.exit(-1)
     @staticmethod
     def image_read(location):
         path = Attack.MODPATH + location
@@ -1161,8 +1162,7 @@ class WebBackdoors:
                 os.system(f"jar -cvf cmd.war {path}warfiles/*")
             except Exception as e:
                 print(f"Exception Occurred {e}")
-            exit(1)
-
+            sys.exit(-1)
         class Win32:
             def __init__(self):
                 location = "/web/data/fuzzdb/web-backdoors/jsp/win32/cmd_win32.jsp"
@@ -1458,10 +1458,12 @@ class WordlistUserPassword:
 
 
 class Extended:
-    def __init__(self):
-        location = "/web/data/extended/SSTI/ssti-payloads.txt"
-        self.ssti_payloads = Attack.file_read(location)
+    class SSTI:
+        """ This implements SSTI (Server Side Template Injection) payload values """
 
-    def __repr__(self):
-        return f"{self.__class__.__name__} {self.ssti_payloads} "
+        def __init__(self):
+            location = "/web/data/extended/SSTI/ssti-payloads.txt"
+            self.ssti_payloads = Attack.file_read(location)
 
+        def __repr__(self):
+            return f"{self.__class__.__name__} {self.ssti_payloads} "

@@ -1,4 +1,4 @@
-if __name__ == "__main__":
+def func_encoders():
     from py3webfuzz import encoderFuncs
 
     print("Full URL: ", encoderFuncs.full_hex_url_encode('%48%65%6c%6c%6f%20%57%6f%72%6c%64'))
@@ -28,3 +28,14 @@ if __name__ == "__main__":
     print('unicode_decode',
           encoderFuncs.unicode_decode("%u0048%u0065%u006c%u006c%u006f%u0020%u0057%u006f%u0072%u006c%u0064"))
     print('rot13_decode', encoderFuncs.rot13_decode("Uryyb Jbeyq"))
+
+
+def ssti():
+    from py3webfuzz import Extended
+    ssti = Extended.SSTI().ssti_payloads
+    for payload in ssti:
+        print(payload)
+
+
+if __name__ == "__main__":
+    ssti()
