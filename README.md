@@ -38,7 +38,7 @@ Installation can be done in a couple of ways. If you want use virtual environmen
  http://pypi.python.org/pypi/setuptools
 
 ```console
-$ git clone https://github.com/jangelesg/py3webfuzz.git
+$ git clone https://github.com/NimdaGrogu/py3webfuzz
 $ cd py3webfuzz/
 ```
 You can run the supplied setup.py with the install command
