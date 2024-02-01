@@ -8,6 +8,6 @@ setup(
     url='',
     license='',
     author='Jonathan Angeles',
-    author_email='jangelesg@gangsecurity.com',
+    author_email='',
     description=''
 )

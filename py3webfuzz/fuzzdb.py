@@ -32,7 +32,7 @@ class Attack:
         return "Main Fuzzdb Attack Class"
 
     def __repr__(self):
-        return f"{__name__}{self.__class__.__name__}"
+        return f"{__name__}{self.__class__.__name__} {__package__}"
 
     MODPATH = os.path.dirname(__file__)
 
