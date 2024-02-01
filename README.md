@@ -10,7 +10,7 @@ Python3 Module Compatible
 
 ## Author
 - Jonathan Angeles @ex0day
-- Github: https://github.com/jangelesg/py3webfuzz
+- Github: https://github.com/NimdaGrogu/py3webfuzz
 ## Contributors 
 - Nathan Hamiel @nathanhamiel
 ##
